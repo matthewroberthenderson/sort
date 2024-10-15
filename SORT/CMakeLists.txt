@@ -1,0 +1,5 @@
+add_executable(${PNAME} "${CMAKE_CURRENT_LIST_DIR}/src/main.cpp")
+target_link_directories(${PNAME} PUBLIC "${CMAKE_BINARY_DIR}/SDL/Debug")
+target_include_directories(${PNAME} PUBLIC "${CMAKE_SOURCE_DIR}/SDL/include")
+target_include_directories(${PNAME} PUBLIC "${CMAKE_SOURCE_DIR}/SORT/include")
+target_link_libraries(${PNAME} SDL3)
