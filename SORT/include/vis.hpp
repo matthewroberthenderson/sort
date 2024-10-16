@@ -12,8 +12,8 @@ namespace vis
 
     void arrow(SDL_Renderer *renderer, int x, int y, int width, int height, col color)
     {
-        int bl = 5;  // blur range
-        int ga = 30; // glow amount;
+        int bl = 4;  // blur range
+        int ga = 10; // glow amount;
         SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, ga);
 
         for (int i = 4; i > 0; --i)
@@ -61,13 +61,8 @@ namespace vis
                 // SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255); //green
             }
 
-            SDL_Rect rect;
-            rect.x = i * RECT_WIDTH;
-            rect.y = WINDOW_HEIGHT - arr[i];
-            rect.w = RECT_WIDTH;
-            rect.h = arr[i];
 
-            arrow(renderer, i * RECT_WIDTH, WINDOW_HEIGHT - (arr[i] / 2.0), RECT_WIDTH, arr[i], color);
+            arrow(renderer, i * ELEMENT_SCALE, (WINDOW_HEIGHT/2) - (arr[i] / 2.0), ELEMENT_SCALE, arr[i], color);
         }
 
         SDL_RenderPresent(renderer);
