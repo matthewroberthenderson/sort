@@ -48,7 +48,7 @@ SDL_AppResult SDL_AppIterate(void* appstate)
     //run sorting visualisation
     std::vector<int> arr = data::generate_data(data::gen_type::signalsine, fint(NUM_ELEMENTS));
     SDL_Delay(100);
-    alg::sort(alg::bubble, renderer, arr);
+    alg::sort(alg::tim, renderer, arr);
 
     SDL_Delay(3000);
     SDL_RenderPresent(renderer); 
