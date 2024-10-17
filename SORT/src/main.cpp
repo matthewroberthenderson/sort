@@ -13,7 +13,6 @@ static SDL_FPoint points[500];
 
 SDL_AppResult SDL_AppInit(void** appstate, int argc, char* argv[])
 {
-    int i;
 
     SDL_SetAppMetadata("Sorting Playground SDL3 Visualisation", "1.0", "com.matthewhenderson.sorting");
 
@@ -22,7 +21,7 @@ SDL_AppResult SDL_AppInit(void** appstate, int argc, char* argv[])
         return SDL_APP_FAILURE;
     }
 
-    if (!SDL_CreateWindowAndRenderer("Sorting Playground SDL3 Visualisation", WINDOW_WIDTH, WINDOW_HEIGHT, 0, &window, &renderer)) {
+    if (!SDL_CreateWindowAndRenderer("Sorting Playground SDL3 Visualisation", fint(WINDOW_WIDTH), fint(WINDOW_HEIGHT), 0, &window, &renderer)) {
         SDL_Log("Couldn't create window/renderer: %s", SDL_GetError());
         return SDL_APP_FAILURE;
     }
@@ -47,7 +46,7 @@ SDL_AppResult SDL_AppIterate(void* appstate)
     SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
     
     //run sorting visualisation
-    std::vector<int> arr = data::generate_data(data::gen_type::signalsine, NUM_ELEMENTS);
+    std::vector<int> arr = data::generate_data(data::gen_type::signalsine, fint(NUM_ELEMENTS));
     SDL_Delay(100);
     alg::sort(alg::bubble, renderer, arr);
 

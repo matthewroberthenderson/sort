@@ -1,4 +1,5 @@
 #pragma once
+#define fint(x) static_cast<int>(x)
 #define SDL_MAIN_USE_CALLBACKS 1  /* use the callbacks instead of main() */
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_main.h>
@@ -9,11 +10,12 @@
 #include <ctime>
 #include <algorithm>
 
-const int WINDOW_WIDTH = 800;
-const int WINDOW_HEIGHT = 800; 
-const int ELEMENT_SCALE = WINDOW_WIDTH / 150;
-const int NUM_ELEMENTS = WINDOW_WIDTH / ELEMENT_SCALE;
-const int RUN = NUM_ELEMENTS / 10; //FOR TIM
+const float WINDOW_WIDTH = 800;
+const float WINDOW_HEIGHT = 800; 
+const float ELEMENT_SCALE = WINDOW_WIDTH / 150;
+const float NUM_ELEMENTS = WINDOW_WIDTH / ELEMENT_SCALE;
+const int RUN = int(NUM_ELEMENTS / 10); //FOR TIM
+
 
 namespace alg
 {

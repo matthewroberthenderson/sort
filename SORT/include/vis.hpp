@@ -10,17 +10,18 @@ namespace vis
         int g = 0;
     };
 
-    void arrow(SDL_Renderer *renderer, int x, int y, int width, int height, col color)
-    {
+    void arrow(SDL_Renderer *renderer, float x, float y, float width, float height, col color){
         int bl = 4;  // blur range
         int ga = 10; // glow amount;
         SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, ga);
 
-        for (int i = 4; i > 0; --i)
-        {
-            for (int j = 4; j > 0; --j)
-            {
-                // this is just for lines glow
+        //a lot of int float conversion here but does not really matter.
+        #pragma warning(push)                    
+        #pragma warning(disable: 4244) 
+
+        // this is just for lines glow
+        for (int i = 4; i > 0; --i){
+            for (int j = 4; j > 0; --j){
                 SDL_RenderLine(renderer, (x - sin(i) * bl) + width, (y - cos(j) * bl) + height, (x - sin(i) * bl), (y - cos(j) * bl) + height);
                 SDL_RenderLine(renderer, (x - sin(i) * bl), (y - cos(j) * bl), (x - sin(i) * bl), (y - cos(j) * bl) + height);
                 SDL_RenderLine(renderer, (x + sin(i) * bl) + width, (y + cos(j) * bl), (x + sin(i) * bl) + width, (y + cos(j) * bl) + height);
@@ -32,8 +33,8 @@ namespace vis
         SDL_RenderLine(renderer, x + width, y + height, x, y + height);
         SDL_RenderLine(renderer, x, y, x, y + height);
         SDL_RenderLine(renderer, x + width, y, x + width, y + height);
-        SDL_RenderLine(renderer, x + width,
-                       y, x, y);
+        SDL_RenderLine(renderer, x + width, y, x, y);
+        #pragma warning(pop)
     }
 
     void renderArray(SDL_Renderer *renderer, const std::vector<int> &arr, const std::vector<int> &highlights)
@@ -50,8 +51,6 @@ namespace vis
                 color.r = 209;
                 color.g = 73;
                 color.b = 91;
-
-                //(renderer, 255, 0, 0, 255); // red
             }
             else
             {
@@ -62,7 +61,7 @@ namespace vis
             }
 
 
-            arrow(renderer, i * ELEMENT_SCALE, (WINDOW_HEIGHT/2) - (arr[i] / 2.0), ELEMENT_SCALE, arr[i], color);
+            arrow(renderer, i * ELEMENT_SCALE, WINDOW_HEIGHT/2 - arr[i] / 2.0, ELEMENT_SCALE, arr[i], color);
         }
 
         SDL_RenderPresent(renderer);

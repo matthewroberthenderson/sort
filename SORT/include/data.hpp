@@ -14,7 +14,7 @@ namespace data
         srand(time(0));
         for (int i = 0; i < size; i++)
         {
-            arr[i] = rand() % WINDOW_HEIGHT;
+            arr[i] = rand() % int(WINDOW_HEIGHT);
         }
     }
 
